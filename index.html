@@ -4,24 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elephants, Ecology &amp; Conservation in Practice &middot; A Thailand Field Program</title>
-<meta name="description" content="A six-week field program in Thailand on the Asian elephant: ecology, behavior, and the institutions that govern coexistence. Field-tested and led in-country, ready for education providers to co-deliver.">
+<meta name="description" content="A configurable 43-day field program in Thailand on Asian elephant ecology, human-elephant coexistence, and field methods, delivered by a resident in-country team for universities, field schools, and study-abroad providers.">
 <link rel="icon" type="image/png" sizes="256x256" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-<link rel="preload" as="image" href="img/03-hero.webp">
+<link rel="preload" as="image" href="img/03-hero.webp" imagesrcset="img/03-hero-640.webp 640w, img/03-hero-960.webp 960w, img/03-hero.webp 1440w" imagesizes="100vw" fetchpriority="high">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tylernuckols555.github.io/thailand-field-program/">
 <meta property="og:title" content="Elephants, Ecology &amp; Conservation in Practice &middot; A Thailand Field Program">
-<meta property="og:description" content="A six-week field program in Thailand on the Asian elephant: ecology, behavior, and the institutions that govern coexistence. Field-tested and led in-country, ready for education providers to co-deliver.">
+<meta property="og:description" content="A configurable 43-day field program in Thailand on Asian elephant ecology, human-elephant coexistence, and field methods, delivered by a resident in-country team for universities, field schools, and study-abroad providers.">
 <meta property="og:image" content="https://tylernuckols555.github.io/thailand-field-program/img/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://tylernuckols555.github.io/thailand-field-program/">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://gtadv.org/#organization","name":"Ground Truth Advisory","url":"https://gtadv.org/","email":"tyler@gtadv.org","address":{"@type":"PostalAddress","addressLocality":"Bangkok","addressCountry":"TH"}},{"@type":"Person","@id":"https://tylernuckols555.github.io/thailand-field-program/#tyler","name":"Tyler Nuckols","jobTitle":"Lead Instructor & Program Director","affiliation":{"@type":"CollegeOrUniversity","name":"University of Colorado Boulder"},"worksFor":{"@id":"https://gtadv.org/#organization"},"sameAs":["https://www.linkedin.com/in/tyler-nuckols/","https://www.researchgate.net/profile/Tyler-Nuckols"]},{"@type":"Course","name":"Elephants, Ecology & Conservation in Practice","description":"A configurable 43-day field program in Thailand on Asian elephant ecology, human-elephant coexistence, and field methods for universities, field schools, and study-abroad providers.","provider":{"@id":"https://gtadv.org/#organization"},"url":"https://tylernuckols555.github.io/thailand-field-program/"}]}</script>
 <script>document.documentElement.classList.add('js');</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
  --paper:#F2EDE3; --paper-2:#E8E1D2; --card:#FBF8F0;
- --ink:#1B1A15; --body:#403D32; --muted:#7C7563;
+ --ink:#1B1A15; --body:#403D32; --muted:#6B6455;
  --pine:#21382C; --pine-2:#2C4A39;
  --clay:#B45E2E; --clay-d:#9A4D21; --clay-l:#DD9159;
  --line:rgba(27,26,21,.12); --line-d:rgba(242,237,227,.16);
@@ -63,6 +65,10 @@ h2.h2{font-size:clamp(1.55rem,1.2rem+1.9vw,2.25rem);margin-top:.6rem;max-width:2
 .btn-ghost{border-color:currentColor;color:inherit;opacity:.95}
 .btn-ghost:hover{background:rgba(127,127,127,.12);transform:translateY(-2px)}
 
+.skip{position:fixed;left:-9999px;top:0;z-index:100;background:var(--pine);color:#F4EFE3;padding:.75em 1.3em;border-radius:0 0 8px 0;font-weight:700;text-decoration:none}
+.skip:focus{left:0}
+:is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid var(--clay);outline-offset:2px}
+
 /* nav */
 nav{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;
  padding:1.05rem clamp(1rem,4vw,2.4rem);color:#F4EFE3;text-shadow:0 1px 9px rgba(0,0,0,.4);transition:background .3s,color .3s,padding .3s,box-shadow .3s,border-color .3s;border-bottom:1px solid transparent}
@@ -83,14 +89,28 @@ nav.scrolled .brand .bt b{font-size:.86rem}
 nav.scrolled .nav-links a::after{background:var(--clay)}
 .nav-links a:hover::after{width:100%}
 nav .btn{padding:.55em 1.1em;font-size:.85rem}
-@media(max-width:880px){.nav-links{display:none}.brand .bt i{display:none}}
+.menu-btn{display:none;width:44px;height:44px;border:1.5px solid currentColor;border-radius:6px;background:transparent;color:inherit;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.sr{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+.mi{position:relative;width:18px;height:2px;background:currentColor;display:block}
+.mi::before,.mi::after{content:"";position:absolute;left:0;width:18px;height:2px;background:currentColor}
+.mi::before{top:-6px}.mi::after{top:6px}
+.menu-btn[aria-expanded="true"] .mi{background:transparent}
+.menu-btn[aria-expanded="true"] .mi::before{top:0;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] .mi::after{top:0;transform:rotate(-45deg)}
+@media(max-width:880px){.brand .bt i{display:none}.menu-btn{display:inline-flex}
+ .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(242,237,227,.98);color:var(--ink);text-shadow:none;border-bottom:1px solid var(--line);box-shadow:0 18px 30px -22px rgba(27,26,21,.55);padding:.4rem clamp(1rem,4vw,2.4rem) 1rem}
+ .nav-links.open{display:flex}
+ .nav-links a{padding:.85em 0;font-size:1rem;border-bottom:1px solid var(--line)}
+ .nav-links a:last-child{border-bottom:none}}
 
 /* hero */
-.hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;background-size:cover;background-position:center 38%;color:#F4EFE3}
+.hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;color:#F4EFE3}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
+.hero-proof{margin-top:1.5rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);text-shadow:0 1px 12px rgba(0,0,0,.55)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,16,12,.55) 0%,rgba(18,16,12,.12) 22%,rgba(18,16,12,.30) 48%,rgba(18,16,12,.9) 100%)}
 .hero .wrap{position:relative;z-index:2;padding-top:7rem;padding-bottom:clamp(2.6rem,6vh,4.6rem)}
 .hero .eyebrow{color:#F7E8D6;font-size:.86rem;letter-spacing:.16em;text-shadow:0 1px 14px rgba(0,0,0,.75)}
-.hero h1{color:#fff;font-size:clamp(2.3rem,1.9rem+3.5vw,3.7rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;max-width:17ch;margin:.85rem 0 0;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero h1{color:#fff;font-size:clamp(2.3rem,1.9rem+3.5vw,3.7rem);font-weight:700;letter-spacing:-.02em;line-height:1.08;max-width:21ch;margin:.85rem 0 0;text-shadow:0 2px 30px rgba(0,0,0,.35)}
 .hero .lead{color:rgba(255,255,255,.92);max-width:52ch;text-shadow:0 1px 16px rgba(0,0,0,.3)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.9rem}
 .hero-cap{position:absolute;right:clamp(1rem,4vw,2.4rem);bottom:1.2rem;z-index:2;font-family:var(--mono);
@@ -127,7 +147,7 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
 .arc-strip::before{content:"";position:absolute;top:6px;left:7px;right:7px;height:2px;background:rgba(221,145,89,.5)}
 .arc-step{position:relative;padding-top:1.7rem}
 .arc-step::before{content:"";position:absolute;top:0;left:0;width:13px;height:13px;border-radius:50%;background:var(--clay-l);box-shadow:0 0 0 4px var(--pine)}
-.arc-step h4{font-size:1.16rem;color:#F4EFE3;margin-bottom:.3rem}
+.arc-step h3{font-size:1.16rem;color:#F4EFE3;margin-bottom:.3rem}
 .arc-step span{font-size:.93rem;color:rgba(242,237,227,.7)}
 @media(max-width:720px){.arc-strip{grid-template-columns:1fr;gap:1.2rem}.arc-strip::before{display:none}
  .arc-step{border-left:2px solid rgba(221,145,89,.5);padding-left:1.1rem;padding-top:0}.arc-step::before{left:-8px;top:3px}}
@@ -139,7 +159,7 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
  padding:.7rem .9rem;color:rgba(242,237,227,.66);background:rgba(242,237,227,.04);display:flex;justify-content:space-between;gap:1rem}
 .arc-cols{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;margin-top:1.6rem}
 @media(max-width:720px){.arc-cols{grid-template-columns:1fr;gap:1.6rem}}
-.col h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--clay-l);margin-bottom:.9rem}
+.col h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--clay-l);margin-bottom:.9rem}
 .flist{list-style:none}
 .flist li{padding:.62rem 0;border-bottom:1px solid rgba(242,237,227,.12);font-size:.98rem;color:rgba(242,237,227,.88);display:flex;gap:.7rem}
 .flist li::before{content:"";flex:none;width:6px;height:6px;margin-top:.6em;border-radius:50%;background:var(--clay-l)}
@@ -190,7 +210,7 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
 @media(max-width:560px){.plist{grid-template-columns:1fr}}
 .pitem{display:flex;gap:.85rem;padding:.2rem 0}
 .pitem .pidx{font-family:var(--mono);font-size:.78rem;color:var(--clay-l);flex:none;padding-top:.15rem}
-.pitem h4{font-size:1.02rem;color:#F4EFE3;margin-bottom:.2rem;line-height:1.2}
+.pitem h3{font-size:1.02rem;color:#F4EFE3;margin-bottom:.2rem;line-height:1.2}
 .pitem p{font-size:.88rem;color:rgba(242,237,227,.68);line-height:1.45}
 
 /* ground ops */
@@ -201,7 +221,7 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
 .oplist{display:grid;gap:1.5rem}
 .opitem{display:flex;gap:1rem}
 .opitem .opico{flex:none;color:var(--clay-d)}.opitem .opico svg{width:28px;height:28px}
-.opitem h4{font-size:1.05rem;margin-bottom:.3rem}
+.opitem h3{font-size:1.05rem;margin-bottom:.3rem}
 .opitem p{font-size:.93rem;color:var(--body)}
 
 /* instructor */
@@ -221,7 +241,7 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
 @media(max-width:760px){.team2{grid-template-columns:1fr}}
 .tcard{display:flex;gap:1.1rem;background:rgba(242,237,227,.05);border:1px solid var(--line-d);border-radius:8px;padding:1.4rem 1.5rem}
 .tcard .role{font-family:var(--mono);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--clay-l);margin-bottom:.35rem}
-.tcard h4{font-size:1.1rem;color:#F4EFE3;margin-bottom:.4rem;line-height:1.2}
+.tcard h3{font-size:1.1rem;color:#F4EFE3;margin-bottom:.4rem;line-height:1.2}
 .tcard p{font-size:.92rem;color:rgba(242,237,227,.78);line-height:1.5}
 .tcard .tlink{display:inline-block;margin-top:.75rem;font-family:var(--mono);font-size:.78rem;color:var(--clay-l);text-decoration:none;border-bottom:1px solid rgba(221,145,89,.4);padding-bottom:1px}
 .tavatar{flex:none;width:56px;height:56px;border-radius:8px;overflow:hidden;background:#16261d}
@@ -235,7 +255,7 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
 /* cta */
 .cta{position:relative;background-size:cover;background-position:center;color:#fff;overflow:hidden}
 .cta::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,16,12,.6),rgba(18,16,12,.72))}
-.cta .wrap{position:relative;z-index:2;text-align:center;max-width:680px;padding-block:clamp(4.5rem,9vw,7rem)}
+.cta .wrap{position:relative;z-index:2;text-align:center;max-width:760px;padding-block:clamp(4.5rem,9vw,7rem)}
 .cta .eyebrow{justify-content:center;color:#F7E8D6;font-size:.86rem;letter-spacing:.16em;text-shadow:0 1px 14px rgba(0,0,0,.75)}
 .cta h2{color:#fff;font-size:clamp(1.9rem,1.4rem+2.6vw,3rem);margin-top:.6rem}
 .cta .lead{color:rgba(255,255,255,.9);margin:1.1rem auto 0}
@@ -247,10 +267,36 @@ nav .btn{padding:.55em 1.1em;font-size:.85rem}
 .footer .glyph{width:40px;height:26px;color:rgba(242,237,227,.55);flex:none}
 .foot-l{display:flex;align-items:center;gap:.7rem}
 .foot-l b{color:rgba(242,237,227,.86);font-size:.92rem;display:block}
-.foot-l small{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,227,.45)}
+.foot-l small{font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,227,.8)}
 .footer a{color:rgba(242,237,227,.72);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
 .footer a:hover{border-bottom-color:rgba(242,237,227,.5)}
 .foot-r{font-family:var(--mono);font-size:.78rem;display:flex;gap:.8rem;flex-wrap:wrap}
+
+/* inquiry form */
+.inquiry{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:760px;margin:2.2rem auto 0;text-align:left;background:rgba(20,18,14,.55);border:1px solid rgba(242,237,227,.18);border-radius:12px;padding:clamp(1.1rem,3vw,1.6rem);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.inquiry label{display:flex;flex-direction:column;gap:.4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.inquiry input,.inquiry select,.inquiry textarea{font-family:var(--sans);font-size:1rem;color:var(--ink);background:#FBF8F0;border:1px solid rgba(27,26,21,.3);border-radius:6px;padding:.6em .75em;min-height:44px;width:100%}
+.inquiry textarea{min-height:110px;resize:vertical}
+.inquiry .full{grid-column:1/-1}
+.inquiry button{grid-column:1/-1;justify-self:center;margin-top:.3rem}
+.inquiry .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+@media(max-width:720px){.inquiry{grid-template-columns:1fr}}
+.form-note{margin-top:1.1rem;font-size:.88rem;color:rgba(255,255,255,.85)}
+.form-note a{color:#F7E8D6}
+.thanks{display:none;max-width:760px;margin:1.2rem auto 0;background:var(--pine-2);border:1px solid rgba(242,237,227,.25);color:#F4EFE3;padding:.85em 1.1em;border-radius:8px;font-weight:600}
+.thanks:target{display:block}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:760px;margin:2.2rem auto 0;padding:0;text-align:left}
+.steps li{background:rgba(20,18,14,.5);border:1px solid rgba(242,237,227,.16);border-radius:8px;padding:1rem 1.1rem}
+.steps b{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--clay-l);margin-bottom:.35rem}
+.steps span{font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.45}
+@media(max-width:720px){.steps{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:820px;margin-top:2.2rem}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:700;color:var(--ink);padding:.85em 0;font-size:1.02rem}
+.faq details[open] summary{color:var(--clay-d)}
+.faq details p{padding:0 0 1.1em;color:var(--body);max-width:65ch}
 
 /* reveal (gated behind .js so content shows without JS) */
 @keyframes rise{to{opacity:1;transform:none}}
@@ -262,26 +308,30 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
 </style>
 </head>
 <body>
-
+<a class="skip" href="#main">Skip to content</a>
 
 <nav>
  <a class="brand" href="#top" aria-label="Home"><span class="glyph" role="img" aria-label="Program mark"></span>
   <span class="bt"><b>Thailand Field Program</b><i>Elephants, Ecology &amp; Conservation</i></span></a>
  <div class="nav-right">
-  <div class="nav-links"><a href="#program">Program</a><a href="#route">Route</a><a href="#partners">Partners</a><a href="#team">Team</a></div>
-  <a class="btn btn-primary" href="#contact">Co-deliver <span class="a">&rarr;</span></a>
+  <div class="nav-links" id="site-menu"><a href="#program">Program</a><a href="#route">Route</a><a href="#partners">Partners</a><a href="#faq">FAQ</a><a href="#team">Team</a></div>
+  <a class="btn btn-primary" href="#contact">Request partner kit <span class="a">&rarr;</span></a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu"><span class="mi" aria-hidden="true"></span><span class="sr">Menu</span></button>
  </div>
 </nav>
 
-<header class="hero" id="top" style="background-image:url(img/03-hero.webp)">
+<main id="main">
+<header class="hero" id="top">
+ <img class="hero-img" src="img/03-hero.webp" srcset="img/03-hero-640.webp 640w, img/03-hero-960.webp 960w, img/03-hero.webp 1440w" sizes="100vw" width="1440" height="960" alt="Observers seated on a log watch a herd of wild Asian elephants grazing at the forest edge" fetchpriority="high" decoding="async">
  <div class="wrap">
-  <div class="eyebrow anim" style="animation-delay:.05s">Field program &middot; Thailand &middot; 6 weeks</div>
-  <h1 class="anim" style="animation-delay:.15s">Elephants, Ecology &amp; Conservation in Practice</h1>
-  <p class="lead anim" style="animation-delay:.3s">Six weeks tracing the Asian elephant across Thailand: its ecology, its behavior, and the institutions that govern coexistence. Built and led in-country, ready to co-deliver.</p>
+  <div class="eyebrow anim" style="animation-delay:.05s">For universities, field schools &amp; study-abroad providers</div>
+  <h1 class="anim" style="animation-delay:.15s">Add a Thailand field program without building the in-country operation.</h1>
+  <p class="lead anim" style="animation-delay:.3s">A resident Thailand team delivers a 43-day route across 12 sites: Asian elephant ecology, human-elephant coexistence, field methods, and an independent student research project. Bring your students and academic requirements; we adapt the syllabus, risk plan, and budget.</p>
   <div class="hero-cta anim" style="animation-delay:.42s">
-   <a class="btn btn-primary" href="#contact">Co-deliver this program <span class="a">&rarr;</span></a>
-   <a class="btn btn-ghost" href="#program">Explore the program <span class="a">&darr;</span></a>
+   <a class="btn btn-primary" href="#contact">Request the partner kit <span class="a">&rarr;</span></a>
+   <a class="btn btn-ghost" href="#route">Explore the 43-day route <span class="a">&darr;</span></a>
   </div>
+  <p class="hero-proof anim" style="animation-delay:.52s">43 days &middot; 12 sites &middot; 7 named partners &middot; Delivered by Ground Truth Advisory, Bangkok</p>
  </div>
  <div class="hero-cap">Kindred Spirit Elephant Sanctuary &middot; 18.4&deg;N 98.2&deg;E</div>
 </header>
@@ -291,11 +341,11 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
 <section class="sec" id="program">
  <div class="wrap">
   <div class="shead">
-   <div class="eyebrow reveal">01 / For field-school &amp; study-abroad providers</div>
+   <div class="eyebrow reveal">01 / For universities, field schools &amp; study-abroad providers</div>
    <h2 class="h2 reveal">A complete Thailand program, ready to run.</h2>
-   <p class="lead reveal">You add it to your catalog; I lead the curriculum and a resident Thailand team runs operations on the ground. The itinerary, field methods, and institutional access already exist. Bring your students and academic framework, and we co-develop the syllabus, risk-management plan, and budget to your institution&rsquo;s requirements.</p>
+   <p class="lead reveal">You add it to your catalog; Tyler leads the curriculum and a resident Thailand team, coordinated through Ground Truth Advisory, runs operations on the ground. The itinerary, field methods, and institutional access already exist. Bring your students and academic framework, and we co-develop the syllabus, risk-management plan, and budget to your institution&rsquo;s requirements.</p>
   </div>
-  <div class="cards-3"><article class="card reveal" style="--d:0ms"><span class="idx">01</span><h3>Turnkey and field-tested</h3><p>A 43-day itinerary across 12 sites, with field methods, assessment, and an independent research project built in. Students need no prior field experience, and the structure is a template: we adapt duration, credit load, and academic calendar to your program.</p></article><article class="card reveal" style="--d:80ms"><span class="idx">02</span><h3>Logistics already solved</h3><p>A resident instructor in Bangkok, a licensed Thai coordinator and translator, and a logistics partner running operations at every site.</p></article><article class="card reveal" style="--d:160ms"><span class="idx">03</span><h3>A curriculum no catalog offers</h3><p>Five elephant conservation models compared side by side, grounded in relationships and ongoing conservation work at these sites.</p></article></div>
+  <div class="cards-3"><article class="card reveal" style="--d:0ms"><span class="idx">01</span><h3>Complete and configurable</h3><p>A 43-day itinerary across 12 sites, with field methods, assessment, and an independent research project built in. Students need no prior field experience, and the structure is a template: we adapt duration, credit load, and academic calendar to your program.</p></article><article class="card reveal" style="--d:80ms"><span class="idx">02</span><h3>Logistics already solved</h3><p>A resident instructor in Bangkok, a licensed Thai coordinator and translator, and a logistics partner running operations at every site.</p></article><article class="card reveal" style="--d:160ms"><span class="idx">03</span><h3>Five conservation models, one route</h3><p>Five elephant conservation models compared side by side, grounded in relationships and ongoing conservation work at these sites.</p></article></div>
  </div>
 </section>
 
@@ -314,9 +364,9 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
    <p class="lead reveal">One line of inquiry runs through the program. Students move from elephants as symbols of Thai kingship, through the 1989 logging ban that displaced more than 2,000 working elephants, to the institutions managing wild populations and human-elephant conflict today.</p>
   </div>
   <div class="arc-strip reveal">
-   <div class="arc-step"><h4>Temple elephants</h4><span>Symbols of Buddhist kingship.</span></div>
-   <div class="arc-step"><h4>Working elephants</h4><span>The teak era and the 1989 logging ban.</span></div>
-   <div class="arc-step"><h4>Conservation elephants</h4><span>Wild populations, welfare, and conflict.</span></div>
+   <div class="arc-step"><h3>Temple elephants</h3><span>Symbols of Buddhist kingship.</span></div>
+   <div class="arc-step"><h3>Working elephants</h3><span>The teak era and the 1989 logging ban.</span></div>
+   <div class="arc-step"><h3>Conservation elephants</h3><span>Wild populations, welfare, and conflict.</span></div>
   </div>
   <div class="plates reveal">
    <figure class="plate"><img src="img/05-temple-mural.webp" alt="Temple mural of a royal elephant procession" loading="lazy"><figcaption class="cap"><span>Royal procession, temple mural</span><span>Statecraft</span></figcaption></figure>
@@ -324,11 +374,11 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
   </div>
   <div class="arc-cols">
    <div class="col reveal">
-    <h4>Field methods students learn</h4>
+    <h3>Field methods students learn</h3>
     <ul class="flist"><li>Bird point counts and mammal line transects</li><li>Camera-trap deployment and placement</li><li>Behavioral sampling, ethograms, and individual ID</li><li>Semi-structured interviews on human-elephant conflict</li><li>Participatory, community-based monitoring</li><li>Agroforestry field methods</li></ul>
    </div>
    <div class="col reveal" style="--d:80ms">
-    <h4>What students produce</h4>
+    <h3>What students produce</h3>
     <ul class="flist"><li>An independent research project, designed and run in the field</li><li>Individual oral presentations across the route</li><li>Field notebooks kept at every site</li><li>Two midterm exams and a final</li></ul>
     <p class="pullnote">Students weigh the evidence on alternative-livelihood projects, including where they fail and why.</p>
    </div>
@@ -380,7 +430,7 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
   </div>
   <div class="partners-wrap">
    <figure class="pfeature reveal"><img src="img/20-karen-weaving.webp" alt="Karen weaver at Ban Naklang" loading="lazy"><figcaption class="cap">Karen weaving &middot; Ban Naklang</figcaption></figure>
-   <div class="plist"><div class="pitem reveal" style="--d:0ms"><span class="pidx">01</span><div><h4>Kindred Spirit Elephant Sanctuary</h4><p>Observation-only forest sanctuary; behavioral fieldwork with Karen mahouts.</p></div></div><div class="pitem reveal" style="--d:70ms"><span class="pidx">02</span><div><h4>Zoological Society of London, Thailand</h4><p>Agroforestry and GEDSI safeguarding in the Western Forest Complex buffer.</p></div></div><div class="pitem reveal" style="--d:0ms"><span class="pidx">03</span><div><h4>Thai Elephant Conservation Center</h4><p>State captive-management facility and mahout school in Lampang.</p></div></div><div class="pitem reveal" style="--d:70ms"><span class="pidx">04</span><div><h4>Thailand Department of National Parks</h4><p>Ranger access for patrols, conflict response, and guided surveys.</p></div></div><div class="pitem reveal" style="--d:0ms"><span class="pidx">05</span><div><h4>Karen Indigenous Peoples Coalition</h4><p>Community sessions on displacement and conservation rights at Kaeng Krachan.</p></div></div><div class="pitem reveal" style="--d:70ms"><span class="pidx">06</span><div><h4>Happy Ground Sustainable Agriculture</h4><p>Biochar and soil-carbon fieldwork in the central plains.</p></div></div><div class="pitem reveal" style="--d:0ms"><span class="pidx">07</span><div><h4>Doi Suthep Nature Center</h4><p>Watershed forest ecology and transect practice near Chiang Mai.</p></div></div></div>
+   <div class="plist"><div class="pitem reveal" style="--d:0ms"><span class="pidx">01</span><div><h3>Kindred Spirit Elephant Sanctuary</h3><p>Observation-only forest sanctuary; behavioral fieldwork with Karen mahouts.</p></div></div><div class="pitem reveal" style="--d:70ms"><span class="pidx">02</span><div><h3>Zoological Society of London, Thailand</h3><p>Agroforestry and GEDSI safeguarding in the Western Forest Complex buffer.</p></div></div><div class="pitem reveal" style="--d:0ms"><span class="pidx">03</span><div><h3>Thai Elephant Conservation Center</h3><p>State captive-management facility and mahout school in Lampang.</p></div></div><div class="pitem reveal" style="--d:70ms"><span class="pidx">04</span><div><h3>Thailand Department of National Parks</h3><p>Ranger access for patrols, conflict response, and guided surveys.</p></div></div><div class="pitem reveal" style="--d:0ms"><span class="pidx">05</span><div><h3>Karen Indigenous Peoples Coalition</h3><p>Community sessions on displacement and conservation rights at Kaeng Krachan.</p></div></div><div class="pitem reveal" style="--d:70ms"><span class="pidx">06</span><div><h3>Happy Ground Sustainable Agriculture</h3><p>Biochar and soil-carbon fieldwork in the central plains.</p></div></div><div class="pitem reveal" style="--d:0ms"><span class="pidx">07</span><div><h3>Doi Suthep Nature Center</h3><p>Watershed forest ecology and transect practice near Chiang Mai.</p></div></div></div>
   </div>
  </div>
 </section>
@@ -393,7 +443,7 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
   </div>
   <div class="ops-wrap">
    <figure class="opfeature reveal"><img src="img/21-accommodation.webp" alt="Field accommodation" loading="lazy"></figure>
-   <div class="oplist"><div class="opitem reveal" style="--d:0ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6h18v6"/><path d="M3 12V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v5"/><path d="M3 18v2M21 18v2"/><path d="M11 12h10"/></svg></span><div><h4>Accommodation</h4><p>City guesthouses, Karen homestays, and camping at national-park sites.</p></div></div><div class="opitem reveal" style="--d:70ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5h18a9 9 0 0 1-18 0z"/><path d="M11 3c-1.4 1.4-1.4 2.8 0 4.2"/><path d="M14.2 3.6c-1.1 1.1-1.1 2.3 0 3.4"/></svg></span><div><h4>Meals</h4><p>Locally sourced and cooked on site; dietary needs accommodated with notice.</p></div></div><div class="opitem reveal" style="--d:140ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11l4 4h3v5h-2"/><path d="M9 16H3V7"/><path d="M14 7v4h7"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="17" cy="16.5" r="1.8"/></svg></span><div><h4>Transport</h4><p>A private van and professional driver throughout; no internal flights.</p></div></div><div class="opitem reveal" style="--d:210ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4 10.8 10.8 8.4 15.6 13.2 13.2z"/></svg></span><div><h4>Field support</h4><p>A licensed Thai coordinator and translator for every community session and interview.</p></div></div></div>
+   <div class="oplist"><div class="opitem reveal" style="--d:0ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6h18v6"/><path d="M3 12V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v5"/><path d="M3 18v2M21 18v2"/><path d="M11 12h10"/></svg></span><div><h3>Accommodation</h3><p>City guesthouses, Karen homestays, and camping at national-park sites.</p></div></div><div class="opitem reveal" style="--d:70ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5h18a9 9 0 0 1-18 0z"/><path d="M11 3c-1.4 1.4-1.4 2.8 0 4.2"/><path d="M14.2 3.6c-1.1 1.1-1.1 2.3 0 3.4"/></svg></span><div><h3>Meals</h3><p>Locally sourced and cooked on site; dietary needs accommodated with notice.</p></div></div><div class="opitem reveal" style="--d:140ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11l4 4h3v5h-2"/><path d="M9 16H3V7"/><path d="M14 7v4h7"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="17" cy="16.5" r="1.8"/></svg></span><div><h3>Transport</h3><p>A private van and professional driver throughout; no internal flights.</p></div></div><div class="opitem reveal" style="--d:210ms"><span class="opico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4 10.8 10.8 8.4 15.6 13.2 13.2z"/></svg></span><div><h3>Field support</h3><p>A licensed Thai coordinator and translator for every community session and interview.</p></div></div></div>
   </div>
  </div>
 </section>
@@ -407,39 +457,77 @@ html.js .anim{opacity:0;transform:translateY(16px);animation:rise .85s cubic-bez
     <div class="role">Lead Instructor &amp; Program Director</div>
     <h2 class="h2">Tyler Nuckols</h2>
     <p>Tyler is a PhD candidate in Environmental Studies at the University of Colorado Boulder, where he teaches undergraduate courses on conservation, environmental justice, and human-elephant conflict. He also teaches for the Center for Wildlife Studies and has guest lectured for the School for Field Studies. His expertise comes from years of field research in Thai communities living alongside elephants, and he lives in Bangkok with working relationships at every site on this itinerary.</p>
-    <div class="contact"><a href="mailto:tylernuckols@gmail.com">tylernuckols@gmail.com</a><a href="https://gtadv.org" target="_blank" rel="noopener">gtadv.org</a></div>
+    <div class="contact"><a href="mailto:tyler@gtadv.org">tyler@gtadv.org</a><a href="https://gtadv.org" target="_blank" rel="noopener">gtadv.org</a></div>
    </div>
   </div>
   <div class="team2">
    <article class="tcard reveal"><div class="tavatar"><img src="img/23-mook.webp" alt="Kamolpawn (Mook) Timtang"></div>
-    <div><div class="role">Program Operations Manager</div><h4>Kamolpawn (Mook) Timtang</h4>
+    <div><div class="role">Program Operations Manager</div><h3>Kamolpawn (Mook) Timtang</h3>
      <p>A licensed Thai guide and professional translator. Mook runs in-country operations, permits, and community liaison across the route.</p>
      <a class="tlink" href="https://www.linkedin.com/in/kamolpawn-timtang-409a90212/" target="_blank" rel="noopener">LinkedIn &rarr;</a></div></article>
    <article class="tcard reveal" style="--d:80ms"><div class="tlogo"><span class="mlogo"></span></div>
-    <div><div class="role">Logistics partner</div><h4>Mitria Community Connections</h4>
+    <div><div class="role">Logistics partner</div><h3>Mitria Community Connections</h3>
      <p>Our on-the-ground logistics partner, coordinating transport, lodging, and site operations at every location.</p>
      <a class="tlink" href="https://mitriacc.com/" target="_blank" rel="noopener">mitriacc.com &rarr;</a></div></article>
   </div>
  </div>
 </section>
 
-<section class="sec cta" id="contact" style="background-image:url(img/24-contact.webp)">
+<section class="sec paper2" id="faq">
  <div class="wrap">
-  <div class="eyebrow reveal">07 / Co-deliver</div>
-  <h2 class="reveal">Add this program to your portfolio.</h2>
-  <p class="lead reveal">A field-tested Thailand program with the curriculum and operations already built, and adaptable to your academic calendar, credit load, and group size. Bring your students and framework; we run it on the ground.</p>
-  <div class="cta-btns reveal">
-   <a class="btn btn-primary" href="mailto:tylernuckols@gmail.com?subject=Co-delivering%20the%20Thailand%20Field%20Program">Email Tyler <span class="a">&rarr;</span></a>
-   <a class="btn btn-ghost" href="https://gtadv.org" target="_blank" rel="noopener">Visit gtadv.org <span class="a">&rarr;</span></a>
+  <div class="shead">
+   <div class="eyebrow reveal">07 / Institutional FAQ</div>
+   <h2 class="h2 reveal">What committees ask first.</h2>
+  </div>
+  <div class="faq reveal">
+   <details><summary>Who does our institution contract with?</summary><p>Ground Truth Advisory, the Bangkok-based practice founded by the program director, is the delivery entity. Contracting, insurance, and liability documentation are provided at the proposal stage.</p></details><!-- CONFIRM before merge: GTA registration details as they should appear in contracts -->
+   <details><summary>When can the program run?</summary><p>The 43-day template adapts to your academic calendar. Feasible windows depend on field conditions along the route and are confirmed in the partner kit and proposal.</p></details><!-- CONFIRM before merge: publishable delivery months -->
+   <details><summary>What does it cost?</summary><p>Per-student pricing is driven by cohort size, duration, season, and accommodation mix. In-country transport, accommodation, meals, site access, teaching, and translation are included; international flights, visas, and personal insurance are not. Numbers arrive in the proposal after a fit call.</p></details>
+   <details><summary>Do students ride or bathe elephants?</summary><p>No. Fieldwork is observation-based: Kindred Spirit is an observation-only forest sanctuary, and visits to state captive facilities examine management models rather than staged contact.</p></details><!-- CONFIRM before merge: program-wide animal-contact policy wording -->
+   <details><summary>How is student research ethics handled?</summary><p>Interview-based student projects run under your institution&rsquo;s IRB or ethics pathway where required. The program provides protocol templates, Thai-language consent support, and existing community relationships.</p></details><!-- CONFIRM before merge: protocol templates and consent materials -->
+   <details><summary>What experience do students need?</summary><p>None in the field. Methods are taught on the route, and assessment is built into the itinerary.</p></details>
+   <details><summary>How do credit and contact hours work?</summary><p>Duration, credit load, and calendar adapt to your framework; a contact-hour mapping is included in the partner kit.</p></details>
+   <details><summary>Who runs it day to day, and what if the lead instructor is unavailable?</summary><p>Tyler leads the curriculum, Kamolpawn (Mook) Timtang runs in-country operations as a licensed Thai guide, and Mitria Community Connections handles logistics at every site. Contingency staffing is documented in the risk-management plan.</p></details><!-- CONFIRM before merge: named key-person contingency -->
   </div>
  </div>
 </section>
 
+<section class="sec cta" id="contact" style="background-image:url(img/24-contact.webp)">
+ <div class="wrap">
+  <div class="eyebrow reveal">08 / Start the conversation</div>
+  <h2 class="reveal">Add this program to your portfolio.</h2>
+  <p class="lead reveal">Tell us your institution, target term, and cohort. We reply within 48 hours with the partner kit: configuration options, the delivery model, and the planning checklist your committee will ask for.</p>
+  <form class="inquiry reveal" action="https://formsubmit.co/tyler@gtadv.org" method="POST">
+   <input type="hidden" name="_subject" value="Thailand Field Program - partner inquiry">
+   <input type="hidden" name="_template" value="table">
+   <!-- Update _next when the site moves to its production domain -->
+   <input type="hidden" name="_next" value="https://tylernuckols555.github.io/thailand-field-program/#thanks">
+   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <label>Name<input type="text" name="name" required autocomplete="name"></label>
+   <label>Institution / organization<input type="text" name="institution" required autocomplete="organization"></label>
+   <label>Email<input type="email" name="email" required autocomplete="email"></label>
+   <label>Your role<select name="role"><option>Study-abroad / program provider</option><option>University international office</option><option>Faculty lead</option><option>Other</option></select></label>
+   <label>Target term / year<input type="text" name="target_term" placeholder="e.g., Summer 2028"></label>
+   <label>Estimated cohort size<input type="text" name="cohort_size" inputmode="numeric" placeholder="e.g., 12"></label>
+   <label class="full">Requirements or questions<textarea name="message" rows="4" placeholder="Credit requirements, duration of interest, budget expectations, anything else"></textarea></label>
+   <button class="btn btn-primary" type="submit">Request the partner kit <span class="a">&rarr;</span></button>
+  </form>
+  <p id="thanks" class="thanks" role="status">Thanks, your inquiry is in. Expect a reply within 48 hours.</p>
+  <p class="form-note reveal">We reply within 48 hours, and your details are used only to answer this inquiry. Prefer email? <a href="mailto:tyler@gtadv.org?subject=Thailand%20Field%20Program%20inquiry">tyler@gtadv.org</a></p>
+  <ol class="steps reveal" aria-label="What happens next">
+   <li><b>01 &middot; Inquiry</b><span>Send your target term, cohort, and requirements.</span></li>
+   <li><b>02 &middot; Fit call</b><span>Twenty minutes on academic fit, risk, and budget drivers.</span></li>
+   <li><b>03 &middot; Proposal</b><span>A tailored syllabus, route configuration, and budget.</span></li>
+  </ol>
+ </div>
+</section>
+</main>
+
 <footer class="footer">
  <div class="wrap">
   <div class="foot-l"><span class="glyph" aria-hidden="true"></span>
-   <div><b>Thailand Field Program</b><small>Elephants, Ecology &amp; Conservation in Practice</small></div></div>
-  <div class="foot-r"><a href="mailto:tylernuckols@gmail.com">tylernuckols@gmail.com</a><a href="https://gtadv.org" target="_blank" rel="noopener">gtadv.org</a></div>
+   <div><b>Thailand Field Program</b><small>Elephants, Ecology &amp; Conservation in Practice &middot; Delivered by Ground Truth Advisory, Bangkok</small></div></div>
+  <div class="foot-r"><a href="mailto:tyler@gtadv.org">tyler@gtadv.org</a><a href="https://gtadv.org" target="_blank" rel="noopener">gtadv.org</a></div>
  </div>
 </footer>
 <script>
@@ -453,6 +541,11 @@ function countUp(el){const t=parseInt(el.dataset.count,10);if(reduce){el.textCon
  const dur=1100;let s=null;function f(ts){if(!s)s=ts;const p=Math.min((ts-s)/dur,1);el.textContent=Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(f);else el.textContent=t;}requestAnimationFrame(f);}
 const sIO=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);sIO.unobserve(e.target);}});},{threshold:0.6});
 document.querySelectorAll('.num[data-count]').forEach(el=>sIO.observe(el));
+const mb=document.querySelector('.menu-btn'),ml=document.getElementById('site-menu');
+if(mb&&ml){const close=()=>{ml.classList.remove('open');mb.setAttribute('aria-expanded','false')};
+mb.addEventListener('click',()=>{const o=!ml.classList.contains('open');ml.classList.toggle('open',o);mb.setAttribute('aria-expanded',String(o))});
+ml.addEventListener('click',e=>{if(e.target.closest('a'))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ml.classList.contains('open')){close();mb.focus()}});}
 </script>
 </body>
 </html>

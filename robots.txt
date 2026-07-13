@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tylernuckols555.github.io/thailand-field-program/sitemap.xml
