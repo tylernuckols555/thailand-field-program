@@ -67,7 +67,7 @@ h2{font-size:clamp(2rem,1.3rem + 2.6vw,3.3rem);max-width:22ch}
 h3{font-size:clamp(1.4rem,1.15rem + .8vw,1.8rem)}
 h4{font-size:1.25rem;line-height:1.25}
 .lead{font-size:clamp(1.1rem,1rem + .4vw,1.25rem);line-height:1.55;max-width:62ch;margin-top:1rem}
-.sec{padding-block:clamp(3rem,6.5vw,6rem)}
+.sec{padding-block:clamp(2rem,4vw,3.5rem)}
 .sec-head{margin-bottom:clamp(1.5rem,3vw,2.5rem)}
 .sec-head p{max-width:62ch}
 /* Cut: the heading rides in a raised arm of the panel; the lead sits in the notch beside it */
@@ -139,7 +139,7 @@ h4{font-size:1.25rem;line-height:1.25}
 }
 
 /* Hero */
-.hero{padding-top:calc(12px + 62px + clamp(1.75rem,4.5vw,3.75rem));padding-bottom:clamp(2.5rem,5vw,4.5rem)}
+.hero{padding-top:calc(12px + 62px + clamp(1.5rem,4vw,3.25rem));padding-bottom:clamp(2rem,4vw,3.5rem)}
 .hero-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto auto auto;gap:0 14px;align-items:start;container-type:inline-size}
 .hero-title{display:contents}
 .hl{display:inline-block;width:max-content;max-width:100%;background:var(--lime);color:var(--forest);border-radius:var(--R);padding:.14em .44em .2em .4em;position:relative;font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,6.15cqw,4.55rem);line-height:1;letter-spacing:-.018em;white-space:nowrap;font-optical-sizing:auto}
@@ -197,7 +197,7 @@ h4{font-size:1.25rem;line-height:1.25}
 }
 
 /* Statement */
-.statement{text-align:center;padding-block:clamp(2.5rem,6vw,5.5rem)}
+.statement{text-align:center;padding-block:clamp(1.5rem,3.5vw,3rem) clamp(2rem,4.5vw,4rem)}
 .statement h2{margin-inline:auto;max-width:26ch;font-size:clamp(1.9rem,1.2rem + 2.8vw,3.4rem)}
 .statement p{max-width:66ch;margin:1.25rem auto 0;font-size:clamp(1.02rem,1rem + .25vw,1.15rem)}
 
@@ -378,7 +378,7 @@ td:last-child,th:last-child{padding-right:0}
 @media (max-width:600px){.banner{aspect-ratio:4/3}.logi>div{grid-template-columns:40px 1fr;gap:.9rem}.logi .ico{width:40px;height:40px}}
 
 /* Fee band */
-.band{background:var(--lime);color:var(--ink);padding-block:clamp(3rem,6.5vw,6rem)}
+.band{background:var(--lime);color:var(--ink);padding-block:clamp(2.5rem,4.5vw,4rem)}
 .band h2,.band h3,.band h4{color:var(--ink)}
 .band .muted{color:var(--ink-2)}
 .fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);margin-top:2rem;align-items:start}
@@ -472,7 +472,7 @@ td:last-child,th:last-child{padding-right:0}
 .sites td:first-child{font-weight:600}
 
 /* Closing */
-.close{padding-block:clamp(2rem,5vw,4rem) clamp(3rem,6.5vw,6rem)}
+.close{padding-block:clamp(1.5rem,3vw,2.5rem) clamp(2.5rem,5vw,4.5rem)}
 .close-block{background:var(--lime);color:var(--ink);border-radius:var(--r-panel);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;overflow:hidden;min-height:420px}
 .close-photo{align-self:stretch;min-height:260px}
 .close-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
@@ -482,7 +482,7 @@ td:last-child,th:last-child{padding-right:0}
 @media (max-width:760px){.close-block{grid-template-columns:1fr;min-height:0}.close-photo{min-height:0;aspect-ratio:4/3}.close-text{padding:clamp(1.75rem,4vw,3.5rem) clamp(1.5rem,4vw,3.5rem) clamp(2rem,4vw,3.5rem)}}
 
 /* Footer */
-footer{padding:0 0 3rem;font-size:.93rem}
+footer{padding:0 0 2.5rem;font-size:.93rem}
 .foot{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;padding-top:2rem;border-top:1px solid rgba(243,241,227,.16)}
 .foot p{line-height:1.5}
 .foot .cols{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
@@ -697,7 +697,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
   </div>
 </section>
 
-<section class="sec" id="route">
+<section class="sec" style="padding-top:0" id="route">
   <div class="wrap">
     <div class="cut">
       <div class="cut-tab"><h2>Eighteen days, eight sites, five phases.</h2></div>
@@ -906,7 +906,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
   </div>
 </section>
 
-<section class="sec" style="padding-bottom:0" id="fee">
+<section class="sec" style="padding-top:0;padding-bottom:0" id="fee">
   <div class="wrap">
     <div class="cut cut-lime">
       <div class="cut-tab"><h2>The program fee covers everything on the ground.</h2></div>
@@ -999,7 +999,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
   </div>
 </section>
 
-<section class="sec" id="partners">
+<section class="sec" style="padding-top:0" id="partners">
   <div class="wrap">
     <div class="cut">
       <div class="cut-tab"><h2>Direct access at every site.</h2></div>
