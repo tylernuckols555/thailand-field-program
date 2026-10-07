@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#073A2D">
+<script>document.documentElement.classList.add('js');</script>
 <title>Thailand Field Program: Elephants, Ecology, and Conservation in Practice</title>
 <meta name="description" content="An 18-day field course in Thailand for universities and study-abroad providers: Asian elephant ecology, field methods, and the institutions that govern coexistence. Curriculum, sites, and in-country operations are built. Your institution adds the students and the credit.">
 <link rel="icon" type="image/png" sizes="256x256" href="favicon.png">
@@ -99,7 +100,7 @@ h4{font-size:1.25rem;line-height:1.25}
 .brand .mark{width:36px;height:24px;flex:none;background:var(--forest);-webkit-mask:url(img/elephant-mark.png) center/contain no-repeat;mask:url(img/elephant-mark.png) center/contain no-repeat}
 .nav-links{display:flex;gap:1.35rem;list-style:none;font-weight:500;font-size:.95rem}
 .nav-links a{text-decoration:none;padding:.35rem 0;border-bottom:2px solid transparent;transition:border-color .15s}
-.nav-links a:hover{border-bottom-color:var(--leaf)}
+.nav-links a:hover,.nav-links a.active{border-bottom-color:var(--leaf)}
 .nav-links li:last-child{display:none}
 .nav .btn{padding:.65em 1.05em;font-size:.9rem;white-space:nowrap}
 .nav-toggle{display:none;width:44px;height:40px;border:0;background:transparent;border-radius:8px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center}
@@ -158,6 +159,16 @@ h4{font-size:1.25rem;line-height:1.25}
   .hero-facts dl{grid-template-columns:1fr}
 }
 
+@media (prefers-reduced-motion:no-preference){
+  .js .hl{animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
+  .js .hl-2{animation-delay:.12s}
+  .js .hl-3{animation-delay:.24s}
+  .js .hero-photo{animation:fade .8s ease-out .15s both}
+  .js .hero-facts,.js .hero-copy{animation:fade .6s ease-out .45s both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+}
+
 /* Statement */
 .statement{text-align:center;padding-block:clamp(2.5rem,6vw,5.5rem)}
 .statement h2{margin-inline:auto;max-width:26ch;font-size:clamp(1.9rem,1.2rem + 2.8vw,3.4rem)}
@@ -200,6 +211,17 @@ h4{font-size:1.25rem;line-height:1.25}
 .frame-top{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);margin-top:2.25rem}
 @media (max-width:860px){.frame-top{grid-template-columns:1fr}}
 .bar{display:flex;height:34px;border-radius:9px;overflow:hidden;margin-top:1rem;background:var(--cream-2)}
+@media (prefers-reduced-motion:no-preference){
+  .js .anim .bar span,.js .anim .track span{transform:scaleX(0);transform-origin:left center;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .js .anim.in .bar span,.js .anim.in .track span{transform:none}
+  .js .anim.in .bar span:nth-child(2){transition-delay:.15s}
+  .js .anim.in .bar span:nth-child(3){transition-delay:.3s}
+  .js .anim.in .bar span:nth-child(4){transition-delay:.45s}
+  .js .anim.in .weights li:nth-child(2) .track span{transition-delay:.1s}
+  .js .anim.in .weights li:nth-child(3) .track span{transition-delay:.2s}
+  .js .anim.in .weights li:nth-child(4) .track span{transition-delay:.3s}
+  .js .anim.in .weights li:nth-child(5) .track span{transition-delay:.4s}
+}
 .bar span{display:block;height:100%}
 .legend{list-style:none;display:grid;gap:.5rem;margin-top:1rem}
 .legend li{display:grid;grid-template-columns:12px 2.2rem 1fr;align-items:baseline;gap:.65rem;font-size:.97rem}
@@ -229,12 +251,27 @@ h4{font-size:1.25rem;line-height:1.25}
 .route-panel{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(1.5rem,3vw,3rem);align-items:start}
 .map{background:var(--cream-2);border-radius:var(--r-box);overflow:hidden}
 .map svg{width:100%;height:auto;display:block}
-.map .labels{font-size:40px}
-.map .days{font-size:27px}
-@media (max-width:600px){.map .labels{font-size:42px}.map .days{display:none}}
+.map .lbl{font-size:40px;font-weight:600;fill:#0F2E25}
+.map .day{font-size:27px;font-weight:500;fill:#2B4A40}
+@media (max-width:600px){.map .lbl{font-size:42px}.map .day{display:none}}
+.map .stop{transition:opacity .35s}
+.map.focus .stop{opacity:.28}
+.map.focus .stop.on{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .js .map .reveal{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.3,1) .2s}
+  .js .map.in .reveal{stroke-dashoffset:0}
+  .js .map .stop{opacity:0;transition:opacity .4s ease-out calc(.15s + var(--i) * .28s)}
+  .js .map.in .stop{opacity:1;transition:opacity .4s ease-out calc(.15s + var(--i) * .28s)}
+  .js .map.in.focus .stop{transition-delay:0s;opacity:.28}
+  .js .map.in.focus .stop.on{opacity:1}
+}
+.phases li{border-radius:10px;padding-right:.6rem;margin-right:-.6rem;transition:background-color .15s}
+.phases li.on{background:var(--cream-2)}
+.phases li.on::before{color:var(--leaf)}
 .phases{list-style:none;counter-reset:phase;display:grid;gap:.9rem}
-.phases li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding-top:.9rem;border-top:1px solid var(--cream-3)}
-.phases li:first-child{border-top:0;padding-top:0}
+.phases li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:.9rem .6rem .9rem .6rem;margin-left:-.6rem;border-top:1px solid var(--cream-3)}
+.phases li:last-child{padding-bottom:.4rem}
+.phases li:first-child{border-top:0;padding-top:.2rem}
 .phases li::before{counter-increment:phase;content:counter(phase);font-family:var(--serif);font-size:1.9rem;line-height:1;color:var(--ink);font-weight:500}
 .phases h4{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem .7rem}
 .phases h4 small{font-family:var(--sans);font-size:.86rem;color:var(--ink-2);font-weight:500}
@@ -299,6 +336,22 @@ td:last-child,th:last-child{padding-right:0}
 .band h2,.band h3,.band h4{color:var(--ink)}
 .band .muted{color:var(--ink-2)}
 .fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,3rem);margin-top:2rem;align-items:start}
+.cohort{border:0;padding:0;margin:1rem 0 0;display:grid}
+.cohort legend{padding:0;margin-bottom:.6rem}
+.cohort .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem .9rem;margin:0 -.9rem;border-radius:10px;border-top:1px solid rgba(15,46,37,.18);cursor:pointer;position:relative;transition:background-color .15s}
+.cohort .row:first-of-type{border-top:0}
+.cohort .row:hover{background:rgba(15,46,37,.07)}
+.cohort input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.cohort .n{font-size:1rem}
+.cohort .n small{display:block;font-size:.86rem;color:var(--ink-2);margin-top:.15rem}
+.cohort .fee{font-family:var(--serif);font-size:1.7rem;line-height:1;white-space:nowrap;font-weight:500}
+.cohort .row:has(input:checked){background:var(--forest);color:var(--cream);border-top-color:transparent}
+.cohort .row:has(input:checked)+.row{border-top-color:transparent}
+.cohort .row:has(input:checked) .n small{color:rgba(243,241,227,.7)}
+.cohort .row:has(input:focus-visible){outline:2px solid var(--forest);outline-offset:2px}
+@media (max-width:600px){.cohort .row{margin:0 -.5rem;padding:.8rem .5rem}}
+.readout{margin-top:1.1rem;font-size:.97rem;line-height:1.5}
+.readout b{font-weight:600}
 .price{width:100%;border-collapse:collapse}
 .price td{padding:.8rem 0;border-top:1px solid rgba(15,46,37,.18);font-size:1rem}
 .price tr:first-child td{border-top:0}
@@ -538,7 +591,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
         <h2>Three semester credits. <span class="nb">135 documented hours.</span></h2>
         <p>Proposed as a study-abroad or field course aligned with your existing program track. Your institution sets the course number, level, applicability, grading scale, tuition, and credential treatment; the program supplies the curriculum, the field instruction, and the assessment recommendation.</p>
       </div>
-      <div class="frame-top">
+      <div class="frame-top anim">
         <div>
           <h3>Where the 135 hours go</h3>
           <div class="bar" role="img" aria-label="135 hours: 12 pre-departure, 48 direct instruction, 57 supervised field practice, 18 post-program capstone">
@@ -609,32 +662,55 @@ footer{padding:0 0 3rem;font-size:.93rem}
           <text x="990" y="863" text-anchor="middle" font-size="22" fill="#8A877A" letter-spacing="3" font-weight="600">CAMBODIA</text>
           <text x="513" y="1002" text-anchor="middle" font-size="20" fill="#8A877A" letter-spacing="2" font-weight="500">GULF OF</text>
           <text x="513" y="1040" text-anchor="middle" font-size="20" fill="#8A877A" letter-spacing="2" font-weight="500">THAILAND</text>
-          <path d="M304.3,128.1 L243.2,158.6 L207.8,180.1 L356.9,175.1 L391.1,352.7 L342.2,539.2 L330.0,723.1 L488.9,767.5" fill="none" stroke="#073A2D" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>
-          <g fill="#073A2D" stroke="#CFF06A" stroke-width="4">
-            <circle cx="304" cy="128" r="23"/><circle cx="243" cy="159" r="23"/><circle cx="208" cy="180" r="23"/><circle cx="357" cy="175" r="23"/><circle cx="391" cy="353" r="23"/><circle cx="342" cy="539" r="23"/><circle cx="330" cy="723" r="23"/><circle cx="489" cy="768" r="23"/>
+          <defs><mask id="routeMask" maskUnits="userSpaceOnUse" x="-80" y="0" width="1260" height="1078"><path class="reveal" d="M304.3,128.1 L243.2,158.6 L207.8,180.1 L356.9,175.1 L391.1,352.7 L342.2,539.2 L330.0,723.1 L488.9,767.5" fill="none" stroke="#fff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></mask></defs>
+          <g mask="url(#routeMask)"><path d="M304.3,128.1 L243.2,158.6 L207.8,180.1 L356.9,175.1 L391.1,352.7 L342.2,539.2 L330.0,723.1 L488.9,767.5" fill="none" stroke="#073A2D" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/></g>
+          <g class="stop" data-stop="1" data-phase="1" style="--i:0">
+            <circle cx="304" cy="128" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="304" y="137" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">1</text>
+            <text class="lbl" x="336" y="100">Chiang Mai</text>
+            <text class="day" x="336" y="130">Days 1 to 2</text>
           </g>
-          <g font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">
-            <text x="304" y="137">1</text><text x="243" y="168">2</text><text x="208" y="189">3</text><text x="357" y="184">4</text><text x="391" y="362">5</text><text x="342" y="548">6</text><text x="330" y="732">7</text><text x="489" y="777">8</text>
+          <g class="stop" data-stop="2" data-phase="1" style="--i:1">
+            <circle cx="243" cy="159" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="243" y="168" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">2</text>
+            <text class="lbl" x="216" y="120" text-anchor="end">Doi Inthanon</text>
+            <text class="day" x="216" y="148" text-anchor="end">Day 3</text>
           </g>
-          <g class="labels" font-weight="600" fill="#0F2E25">
-            <text x="336" y="100">Chiang Mai</text>
-            <text x="216" y="120" text-anchor="end">Doi Inthanon</text>
-            <text x="222" y="242" text-anchor="end">Ban Naklang</text>
-            <text x="392" y="176">Lampang</text>
-            <text x="359" y="344" text-anchor="end">Sukhothai</text>
-            <text x="310" y="530" text-anchor="end">Huai Kha Khaeng</text>
-            <text x="298" y="714" text-anchor="end">Kanchanaburi</text>
-            <text x="522" y="759">Bangkok</text>
+          <g class="stop" data-stop="3" data-phase="2" style="--i:2">
+            <circle cx="208" cy="180" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="208" y="189" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">3</text>
+            <text class="lbl" x="222" y="242" text-anchor="end">Ban Naklang</text>
+            <text class="day" x="222" y="270" text-anchor="end">Days 4 to 7</text>
           </g>
-          <g class="days" fill="#2B4A40" font-weight="500">
-            <text x="336" y="130">Days 1 to 2</text>
-            <text x="216" y="148" text-anchor="end">Day 3</text>
-            <text x="222" y="270" text-anchor="end">Days 4 to 7</text>
-            <text x="392" y="206">Day 8</text>
-            <text x="359" y="376" text-anchor="end">Day 9</text>
-            <text x="310" y="562" text-anchor="end">Days 10 to 12</text>
-            <text x="298" y="746" text-anchor="end">Days 13 to 15</text>
-            <text x="522" y="791">Days 16 to 18</text>
+          <g class="stop" data-stop="4" data-phase="3" style="--i:3">
+            <circle cx="357" cy="175" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="357" y="184" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">4</text>
+            <text class="lbl" x="392" y="176">Lampang</text>
+            <text class="day" x="392" y="206">Day 8</text>
+          </g>
+          <g class="stop" data-stop="5" data-phase="3" style="--i:4">
+            <circle cx="391" cy="353" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="391" y="362" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">5</text>
+            <text class="lbl" x="359" y="344" text-anchor="end">Sukhothai</text>
+            <text class="day" x="359" y="376" text-anchor="end">Day 9</text>
+          </g>
+          <g class="stop" data-stop="6" data-phase="4" style="--i:5">
+            <circle cx="342" cy="539" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="342" y="548" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">6</text>
+            <text class="lbl" x="310" y="530" text-anchor="end">Huai Kha Khaeng</text>
+            <text class="day" x="310" y="562" text-anchor="end">Days 10 to 12</text>
+          </g>
+          <g class="stop" data-stop="7" data-phase="4" style="--i:6">
+            <circle cx="330" cy="723" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="330" y="732" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">7</text>
+            <text class="lbl" x="298" y="714" text-anchor="end">Kanchanaburi</text>
+            <text class="day" x="298" y="746" text-anchor="end">Days 13 to 15</text>
+          </g>
+          <g class="stop" data-stop="8" data-phase="5" style="--i:7">
+            <circle cx="489" cy="768" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
+            <text x="489" y="777" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">8</text>
+            <text class="lbl" x="522" y="759">Bangkok</text>
+            <text class="day" x="522" y="791">Days 16 to 18</text>
           </g>
           <g transform="translate(1022,64)" fill="#0F2E25" stroke="#0F2E25">
             <line x1="0" y1="26" x2="0" y2="-20" stroke-width="2.4"/>
@@ -648,35 +724,35 @@ footer{padding:0 0 3rem;font-size:.93rem}
         </svg>
       </div>
       <ol class="phases">
-        <li>
+        <li data-stops="1 2" tabindex="0">
           <div>
             <h4>Calibrate <small>Days 1 to 3</small></h4>
             <p class="sites">Chiang Mai, Doi Suthep, Doi Inthanon</p>
             <p>Field safety; sampling design; point-count, transect, vegetation, GPS, and data-sheet fundamentals; watershed and cultural-landscape context.</p>
           </div>
         </li>
-        <li>
+        <li data-stops="3" tabindex="0">
           <div>
             <h4>Observe <small>Days 4 to 7</small></h4>
             <p class="sites">Kindred Spirit Elephant Sanctuary, Ban Naklang</p>
             <p>Ethograms, focal and scan sampling, individual ID, inter-observer reliability, community-based conservation, mahout livelihoods, Karen Indigenous knowledge.</p>
           </div>
         </li>
-        <li>
+        <li data-stops="4 5" tabindex="0">
           <div>
             <h4>Compare institutions <small>Days 8 to 9</small></h4>
             <p class="sites">Lampang (Thai Elephant Conservation Center), Sukhothai</p>
             <p>Welfare indicators, state and community institutions, working-elephant history, material culture, governance, the politics of evidence.</p>
           </div>
         </li>
-        <li>
+        <li data-stops="6 7" tabindex="0">
           <div>
             <h4>Apply <small>Days 10 to 15</small></h4>
             <p class="sites">Huai Kha Khaeng, Kanchanaburi with ZSL Thailand</p>
             <p>Camera-trap and spatial logic, ranger knowledge, human-dimensions methods, coexistence interventions, participatory monitoring, GEDSI, safeguards.</p>
           </div>
         </li>
-        <li>
+        <li data-stops="8" tabindex="0">
           <div>
             <h4>Synthesize <small>Days 16 to 18, plus post-program</small></h4>
             <p class="sites">Bangkok</p>
@@ -787,19 +863,18 @@ footer{padding:0 0 3rem;font-size:.93rem}
       <h2>The program fee covers everything on the ground.</h2>
       <p class="lead" style="color:var(--ink)">The fee is $3,600 per student at the target cohort of 10, and it falls as the cohort grows. It covers field-based delivery in full. Your institution sets its academic credit, tuition, and administrative charges on top of it.</p>
     </div>
-    <div class="fee-grid">
+    <div class="fee-grid anim">
       <div>
         <h3>Fee by cohort size</h3>
-        <table class="price" style="margin-top:1rem">
-          <tbody>
-            <tr><td>8 students <small>minimum to run</small></td><td>$4,200</td></tr>
-            <tr class="target"><td>10 students <small>target cohort</small></td><td>$3,600</td></tr>
-            <tr><td>12 students</td><td>$3,300</td></tr>
-            <tr><td>14 students</td><td>$3,100</td></tr>
-            <tr><td>16 students <small>cap, the staffing ceiling for the field methods</small></td><td>$2,900</td></tr>
-          </tbody>
-        </table>
-        <p class="small muted" style="margin-top:1rem">Per student, in US dollars. The enrollment count on the go/no-go date sets the final per-student fee.</p>
+        <fieldset class="cohort" id="cohort">
+          <legend class="small muted">Per student, in US dollars. Choose a cohort size to see the total.</legend>
+          <label class="row"><input type="radio" name="cohort" value="8" data-fee="4200"><span class="n">8 students<small>minimum to run</small></span><span class="fee">$4,200</span></label>
+          <label class="row"><input type="radio" name="cohort" value="10" data-fee="3600" checked><span class="n">10 students<small>target cohort</small></span><span class="fee">$3,600</span></label>
+          <label class="row"><input type="radio" name="cohort" value="12" data-fee="3300"><span class="n">12 students</span><span class="fee">$3,300</span></label>
+          <label class="row"><input type="radio" name="cohort" value="14" data-fee="3100"><span class="n">14 students</span><span class="fee">$3,100</span></label>
+          <label class="row"><input type="radio" name="cohort" value="16" data-fee="2900"><span class="n">16 students<small>cap, the staffing ceiling for the field methods</small></span><span class="fee">$2,900</span></label>
+        </fieldset>
+        <p class="readout" id="cohort-readout" aria-live="polite">At <b>10 students</b> the program fee totals <b>$36,000</b>, paid by your institution to the provider. The enrollment count on the go/no-go date sets the final rate.</p>
       </div>
       <div>
         <h3>Where $3,600 goes</h3>
@@ -1085,6 +1160,67 @@ footer{padding:0 0 3rem;font-size:.93rem}
     btn.setAttribute('aria-label',open?'Close menu':'Open menu');
   });
   nav.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+})();
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  /* reveal: map route and bars */
+  var reveal=Array.prototype.slice.call(document.querySelectorAll('.map,.anim'));
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.25,rootMargin:'0px 0px -8% 0px'});
+  reveal.forEach(function(el){io.observe(el);});
+  /* a fast scroll can jump past an element without it ever intersecting */
+  function sweep(){
+    reveal=reveal.filter(function(el){
+      if(el.classList.contains('in'))return false;
+      if(el.getBoundingClientRect().top<window.innerHeight*.75){el.classList.add('in');io.unobserve(el);return false;}
+      return true;
+    });
+    if(!reveal.length)window.removeEventListener('scroll',sweep);
+  }
+  window.addEventListener('scroll',sweep,{passive:true});
+  /* scroll-spy */
+  var links=Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+  var byId={};links.forEach(function(a){byId[a.getAttribute('href').slice(1)]=a;});
+  var spy=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.remove('active');});var a=byId[e.target.id];if(a)a.classList.add('active');}});
+  },{rootMargin:'-35% 0px -55% 0px'});
+  Object.keys(byId).forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s);});
+})();
+(function(){
+  /* phases and map markers highlight each other */
+  var map=document.querySelector('.map');if(!map)return;
+  var stops=map.querySelectorAll('.stop'),phases=document.querySelectorAll('.phases li[data-stops]');
+  var locked=null;
+  function setPhase(li){
+    var ids=li?li.getAttribute('data-stops').split(' '):[];
+    map.classList.toggle('focus',!!li);
+    stops.forEach(function(s){s.classList.toggle('on',ids.indexOf(s.getAttribute('data-stop'))>-1);});
+    phases.forEach(function(p){p.classList.toggle('on',p===li);});
+  }
+  phases.forEach(function(li){
+    li.addEventListener('pointerenter',function(e){if(e.pointerType==='touch'||locked)return;setPhase(li);});
+    li.addEventListener('pointerleave',function(e){if(e.pointerType==='touch'||locked)return;setPhase(null);});
+    li.addEventListener('focus',function(){if(!locked)setPhase(li);});
+    li.addEventListener('blur',function(){if(!locked)setPhase(null);});
+    li.addEventListener('click',function(){locked=(locked===li)?null:li;setPhase(locked);});
+    li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();li.click();}});
+  });
+  stops.forEach(function(s){
+    var li=document.querySelector('.phases li[data-stops~="'+s.getAttribute('data-stop')+'"]');
+    s.style.cursor='pointer';
+    s.addEventListener('pointerenter',function(e){if(e.pointerType==='touch'||locked)return;setPhase(li);});
+    s.addEventListener('pointerleave',function(e){if(e.pointerType==='touch'||locked)return;setPhase(null);});
+    s.addEventListener('click',function(){locked=(locked===li)?null:li;setPhase(locked);});
+  });
+})();
+(function(){
+  /* cohort selector */
+  var box=document.getElementById('cohort'),out=document.getElementById('cohort-readout');if(!box||!out)return;
+  function fmt(n){return '$'+n.toLocaleString('en-US');}
+  box.addEventListener('change',function(e){
+    var i=e.target;if(i.name!=='cohort')return;
+    var n=+i.value,fee=+i.getAttribute('data-fee');
+    out.innerHTML='At <b>'+n+' students</b> the program fee totals <b>'+fmt(n*fee)+'</b>, paid by your institution to the provider. The enrollment count on the go/no-go date sets the final rate.';
+  });
 })();
 </script>
 </body>
