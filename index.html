@@ -249,22 +249,17 @@ h4{font-size:1.25rem;line-height:1.25}
 
 /* Route */
 .route-panel{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(1.5rem,3vw,3rem);align-items:start}
-.map{background:var(--cream-2);border-radius:var(--r-box);overflow:hidden}
+.map{background:var(--cream-2);border-radius:var(--r-box);overflow:hidden;align-self:stretch;display:flex;align-items:center}
 .map svg{width:100%;height:auto;display:block}
 .map .lbl{font-size:40px;font-weight:600;fill:#0F2E25}
 .map .day{font-size:27px;font-weight:500;fill:#2B4A40}
 @media (max-width:600px){.map .lbl{font-size:42px}.map .day{display:none}}
-.map .stop{transition:opacity .35s}
-.map.focus .stop{opacity:.28}
+.map .stop{transition:opacity .25s}
+.map.focus .stop{opacity:.22}
 .map.focus .stop.on{opacity:1}
-@media (prefers-reduced-motion:no-preference){
-  .js .map .reveal{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.3,1) .2s}
-  .js .map.in .reveal{stroke-dashoffset:0}
-  .js .map .stop{opacity:0;transition:opacity .4s ease-out calc(.15s + var(--i) * .28s)}
-  .js .map.in .stop{opacity:1;transition:opacity .4s ease-out calc(.15s + var(--i) * .28s)}
-  .js .map.in.focus .stop{transition-delay:0s;opacity:.28}
-  .js .map.in.focus .stop.on{opacity:1}
-}
+
+.map .stop.on circle{stroke-width:9}
+.map .stop.on .lbl{fill:#073A2D}
 .phases li{border-radius:10px;padding-right:.6rem;margin-right:-.6rem;transition:background-color .15s}
 .phases li.on{background:var(--cream-2)}
 .phases li.on::before{color:var(--leaf)}
@@ -416,18 +411,17 @@ td:last-child,th:last-child{padding-right:0}
 
 /* Closing */
 .close{padding-block:clamp(2rem,5vw,4rem) clamp(3rem,6.5vw,6rem)}
-.close-block{background:var(--lime);color:var(--ink);border-radius:var(--r-panel);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;overflow:hidden;min-height:420px}
-.close-mark{align-self:stretch;position:relative;min-height:260px}
-.close-mark::after{content:"";position:absolute;inset:8% 4% 8% 8%;background:var(--forest);-webkit-mask:url(img/elephant-mark.png) left center/contain no-repeat;mask:url(img/elephant-mark.png) left center/contain no-repeat}
-.close-text{padding:clamp(2rem,4vw,3.5rem) clamp(1.5rem,4vw,3.5rem) clamp(2rem,4vw,3.5rem) 0}
+.close-block{background:var(--lime);color:var(--ink);border-radius:var(--r-panel);display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;overflow:hidden;min-height:420px}
+.close-photo{align-self:stretch;min-height:260px}
+.close-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.close-text{padding:clamp(2rem,4vw,3.5rem) clamp(1.5rem,4vw,3.5rem)}
 .close-text h2{color:var(--ink)}
 .close-text p{margin-top:1rem;max-width:52ch}
-@media (max-width:760px){.close-block{grid-template-columns:1fr;min-height:0}.close-mark{min-height:200px}.close-mark::after{inset:10% 20%}.close-text{padding:0 clamp(1.5rem,4vw,3.5rem) clamp(2rem,4vw,3.5rem)}}
+@media (max-width:760px){.close-block{grid-template-columns:1fr;min-height:0}.close-photo{min-height:0;aspect-ratio:4/3}.close-text{padding:clamp(1.75rem,4vw,3.5rem) clamp(1.5rem,4vw,3.5rem) clamp(2rem,4vw,3.5rem)}}
 
 /* Footer */
 footer{padding:0 0 3rem;font-size:.93rem}
-.foot{display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;padding-top:2rem;border-top:1px solid rgba(243,241,227,.16)}
-.foot img{width:150px}
+.foot{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;padding-top:2rem;border-top:1px solid rgba(243,241,227,.16)}
 .foot p{line-height:1.5}
 .foot .cols{display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
 .foot a{text-decoration:none}
@@ -662,8 +656,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
           <text x="990" y="863" text-anchor="middle" font-size="22" fill="#8A877A" letter-spacing="3" font-weight="600">CAMBODIA</text>
           <text x="513" y="1002" text-anchor="middle" font-size="20" fill="#8A877A" letter-spacing="2" font-weight="500">GULF OF</text>
           <text x="513" y="1040" text-anchor="middle" font-size="20" fill="#8A877A" letter-spacing="2" font-weight="500">THAILAND</text>
-          <defs><mask id="routeMask" maskUnits="userSpaceOnUse" x="-80" y="0" width="1260" height="1078"><path class="reveal" d="M304.3,128.1 L243.2,158.6 L207.8,180.1 L356.9,175.1 L391.1,352.7 L342.2,539.2 L330.0,723.1 L488.9,767.5" fill="none" stroke="#fff" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></mask></defs>
-          <g mask="url(#routeMask)"><path d="M304.3,128.1 L243.2,158.6 L207.8,180.1 L356.9,175.1 L391.1,352.7 L342.2,539.2 L330.0,723.1 L488.9,767.5" fill="none" stroke="#073A2D" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/></g>
+          <path d="M304.3,128.1 L243.2,158.6 L207.8,180.1 L356.9,175.1 L391.1,352.7 L342.2,539.2 L330.0,723.1 L488.9,767.5" fill="none" stroke="#073A2D" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>
           <g class="stop" data-stop="1" data-phase="1" style="--i:0">
             <circle cx="304" cy="128" r="23" fill="#073A2D" stroke="#CFF06A" stroke-width="4"/>
             <text x="304" y="137" font-size="26" font-weight="700" fill="#CFF06A" text-anchor="middle">1</text>
@@ -1123,7 +1116,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
 <section class="close" id="contact">
   <div class="wrap">
     <div class="close-block">
-      <div class="close-mark" aria-hidden="true"></div>
+      <figure class="close-photo"><img src="img/elephant-family.webp" width="740" height="630" alt="Three elephants, an adult, a juvenile, and a calf, in a forest clearing" loading="lazy" decoding="async"></figure>
       <div class="close-text">
         <h2>Add this program to your catalog.</h2>
         <p>Bring your students and your academic framework. The curriculum, the sites, and the team are ready; course numbering, credit treatment, and dates are settled with your institution. The full proposal has the complete itinerary, the fee model, and the risk-management plan.</p>
@@ -1140,7 +1133,6 @@ footer{padding:0 0 3rem;font-size:.93rem}
 
 <footer>
   <div class="wrap foot">
-    <img src="img/program-logo-light.png" width="900" height="790" alt="Thailand Field Program" loading="lazy" decoding="async">
     <p><strong>Thailand Field Program</strong><br>Elephants, Ecology, and Conservation in Practice<br><span class="muted" style="color:rgba(243,241,227,.66)">Tyler Nuckols, Ground Truth Advisory, Bangkok</span></p>
     <div class="cols">
       <a href="mailto:tylernuckols@gmail.com">tylernuckols@gmail.com</a>
@@ -1164,7 +1156,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
 (function(){
   if(!('IntersectionObserver' in window))return;
   /* reveal: map route and bars */
-  var reveal=Array.prototype.slice.call(document.querySelectorAll('.map,.anim'));
+  var reveal=Array.prototype.slice.call(document.querySelectorAll('.anim'));
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.25,rootMargin:'0px 0px -8% 0px'});
   reveal.forEach(function(el){io.observe(el);});
   /* a fast scroll can jump past an element without it ever intersecting */
@@ -1189,27 +1181,29 @@ footer{padding:0 0 3rem;font-size:.93rem}
   /* phases and map markers highlight each other */
   var map=document.querySelector('.map');if(!map)return;
   var stops=map.querySelectorAll('.stop'),phases=document.querySelectorAll('.phases li[data-stops]');
-  var locked=null;
-  function setPhase(li){
+  var pinned=null,lastPointer='mouse';
+  document.addEventListener('pointerdown',function(e){lastPointer=e.pointerType||'mouse';},{passive:true});
+  function show(li){
     var ids=li?li.getAttribute('data-stops').split(' '):[];
     map.classList.toggle('focus',!!li);
     stops.forEach(function(s){s.classList.toggle('on',ids.indexOf(s.getAttribute('data-stop'))>-1);});
     phases.forEach(function(p){p.classList.toggle('on',p===li);});
   }
+  function phaseFor(stop){return document.querySelector('.phases li[data-stops~="'+stop.getAttribute('data-stop')+'"]');}
+  function enter(li){if(lastPointer!=='touch')show(li);}
+  function leave(){if(lastPointer!=='touch')show(pinned);}
+  function tap(li){if(lastPointer!=='touch')return;pinned=(pinned===li)?null:li;show(pinned);}
   phases.forEach(function(li){
-    li.addEventListener('pointerenter',function(e){if(e.pointerType==='touch'||locked)return;setPhase(li);});
-    li.addEventListener('pointerleave',function(e){if(e.pointerType==='touch'||locked)return;setPhase(null);});
-    li.addEventListener('focus',function(){if(!locked)setPhase(li);});
-    li.addEventListener('blur',function(){if(!locked)setPhase(null);});
-    li.addEventListener('click',function(){locked=(locked===li)?null:li;setPhase(locked);});
-    li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();li.click();}});
+    li.addEventListener('pointerenter',function(){enter(li);});
+    li.addEventListener('pointerleave',leave);
+    li.addEventListener('focus',function(){show(li);});
+    li.addEventListener('blur',function(){show(pinned);});
+    li.addEventListener('click',function(){tap(li);});
   });
   stops.forEach(function(s){
-    var li=document.querySelector('.phases li[data-stops~="'+s.getAttribute('data-stop')+'"]');
-    s.style.cursor='pointer';
-    s.addEventListener('pointerenter',function(e){if(e.pointerType==='touch'||locked)return;setPhase(li);});
-    s.addEventListener('pointerleave',function(e){if(e.pointerType==='touch'||locked)return;setPhase(null);});
-    s.addEventListener('click',function(){locked=(locked===li)?null:li;setPhase(locked);});
+    s.addEventListener('pointerenter',function(){enter(phaseFor(s));});
+    s.addEventListener('pointerleave',leave);
+    s.addEventListener('click',function(){tap(phaseFor(s));});
   });
 })();
 (function(){
