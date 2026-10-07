@@ -75,10 +75,11 @@ h4{font-size:1.25rem;line-height:1.25}
 .cut-moss{--pc:var(--moss);--pt:var(--on-green-strong)}
 .cut-lime{--pc:var(--lime);--pt:var(--ink)}
 .cut-tab{position:relative;background:var(--pc);color:var(--pt);border-radius:var(--R) var(--R) 0 0;padding:var(--np) var(--np) .3rem;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end}
-.cut-tab h2{color:var(--pt);max-width:none;text-wrap:balance}
+.cut-tab h2{color:var(--pt);max-width:none;text-wrap:balance;font-size:clamp(2rem,1.3rem + 2.4vw,3.1rem)}
 .cut-tab::after{content:"";position:absolute;right:calc(-1*var(--R));bottom:0;width:var(--R);height:var(--R);background:radial-gradient(circle at top right,transparent calc(var(--R) - .5px),var(--pc) var(--R))}
 .cut-lime .cut-tab::before{content:"";position:absolute;left:calc(-1*var(--R));bottom:0;width:var(--R);height:var(--R);background:radial-gradient(circle at top left,transparent calc(var(--R) - .5px),var(--pc) var(--R))}
 .cut-lead{margin:0;padding:0 0 calc(var(--R) + .5rem);font-size:1rem;line-height:1.55;color:var(--on-green)}
+.cut-lead-lg{font-size:1.1rem}
 .cut + .panel{border-top-left-radius:0;padding-top:calc(var(--np) * .6)}
 @media (max-width:760px){
   .cut{grid-template-columns:1fr;gap:0}
@@ -640,7 +641,7 @@ footer{padding:0 0 2.5rem;font-size:.93rem}
   <div class="wrap">
     <div class="cut">
       <div class="cut-tab"><h2>Three semester credits. <span class="nb">135 documented hours.</span></h2></div>
-      <p class="cut-lead">Proposed as a study-abroad or field course aligned with your existing program track. Your institution sets the course number, level, applicability, grading scale, tuition, and credential treatment; the program supplies the curriculum, the field instruction, and the assessment recommendation.</p>
+      <p class="cut-lead cut-lead-lg">Proposed as a study-abroad or field course aligned with your existing program track. Your institution sets the course number, level, applicability, grading scale, tuition, and credential treatment; the program supplies the curriculum, the field instruction, and the assessment recommendation.</p>
     </div>
     <div class="panel">
       <div class="frame-top anim">
@@ -909,7 +910,7 @@ footer{padding:0 0 2.5rem;font-size:.93rem}
 <section class="sec" style="padding-top:0;padding-bottom:0" id="fee">
   <div class="wrap">
     <div class="cut cut-lime">
-      <div class="cut-tab"><h2>The program fee covers everything on the ground.</h2></div>
+      <div class="cut-tab"><h2>The fee covers everything on the ground.</h2></div>
       <p class="cut-lead">The fee is $3,600 per student at the target cohort of 10, and it falls as the cohort grows. It covers field-based delivery in full. Your institution sets its academic credit, tuition, and administrative charges on top of it.</p>
     </div>
   </div>
