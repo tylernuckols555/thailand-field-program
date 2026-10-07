@@ -165,27 +165,30 @@ h4{font-size:1.25rem;line-height:1.25}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 1.5rem;margin-top:1.9rem}
 .stat b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,1.5rem + 1.4vw,2.6rem);line-height:1;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
 .stat span{display:block;margin-top:.4rem;font-size:.92rem;line-height:1.4;color:var(--ink-2)}
+.stat .approx{display:inline;font-size:.62em;vertical-align:.22em;margin:0;color:var(--ink)}
 @media (max-width:340px){.stats{grid-template-columns:1fr}}
 
 .duo-col{display:flex;flex-direction:column;gap:14px}
 .teach-case p{margin-top:1rem}
 .duo-col figure{flex:1;min-height:200px;border-radius:var(--r-panel);overflow:hidden;position:relative}
-.duo-col img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;position:absolute;inset:0}
+.duo-col img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;position:absolute;inset:0}
 .duo-col figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.25rem .9rem;font-size:.86rem;color:var(--cream);background:linear-gradient(to top,rgba(7,58,45,.78),rgba(7,58,45,0))}
 @media (max-width:900px){.duo-col figure{aspect-ratio:16/10;min-height:0}}
 
 /* Learning outcomes */
 .learn{display:grid;grid-template-columns:1fr 300px;gap:clamp(1.5rem,3vw,3rem);align-items:start}
 .learn h2{max-width:none}
-.learn figure{position:sticky;top:96px}
+.learn-photos{display:grid;gap:1.25rem;padding-top:.5rem}
 .learn img{border-radius:var(--r-box);width:100%;aspect-ratio:3/4;object-fit:cover}
+.learn img.sq{aspect-ratio:1}
 .learn figcaption{font-size:.86rem;margin-top:.55rem;color:rgba(243,241,227,.66)}
 .outcomes{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1.4rem 2rem;margin-top:1.75rem}
 .outcomes li{padding-top:1rem;border-top:1px solid rgba(243,241,227,.18)}
 .outcomes h4{margin-bottom:.35rem}
 .outcomes p{font-size:.97rem;line-height:1.5}
 .learn .note{margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid rgba(243,241,227,.18);max-width:70ch}
-@media (max-width:980px){.learn{grid-template-columns:1fr}.learn figure{position:static;max-width:420px}.learn img{aspect-ratio:4/3}}
+@media (max-width:980px){.learn{grid-template-columns:1fr}.learn-photos{grid-template-columns:repeat(3,1fr);gap:14px;padding-top:0}.learn img,.learn img.sq{aspect-ratio:1}}
+@media (max-width:560px){.learn-photos{grid-template-columns:1fr 1fr}.learn-photos figure:last-child{display:none}}
 @media (max-width:640px){.outcomes{grid-template-columns:1fr}}
 
 /* Academic framework */
@@ -194,9 +197,10 @@ h4{font-size:1.25rem;line-height:1.25}
 .bar{display:flex;height:34px;border-radius:9px;overflow:hidden;margin-top:1rem;background:var(--cream-2)}
 .bar span{display:block;height:100%}
 .legend{list-style:none;display:grid;gap:.5rem;margin-top:1rem}
-.legend li{display:grid;grid-template-columns:12px auto 1fr;align-items:baseline;gap:.65rem;font-size:.97rem}
+.legend li{display:grid;grid-template-columns:12px 2.2rem 1fr;align-items:baseline;gap:.65rem;font-size:.97rem}
+.legend.money li{grid-template-columns:12px 4.4rem 1fr}
 .legend i{width:12px;height:12px;border-radius:3px;display:block;transform:translateY(1px)}
-.legend b{font-weight:600;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.legend b{font-weight:600;text-align:left;white-space:nowrap;font-variant-numeric:tabular-nums}
 .c1{background:var(--lime)}.c2{background:var(--leaf)}.c3{background:var(--moss-2)}.c4{background:var(--forest)}
 .weights{list-style:none;display:grid;gap:.75rem;margin-top:1rem}
 .weights li{display:grid;grid-template-columns:1fr 4ch;gap:.35rem .8rem;align-items:baseline;font-size:.97rem}
@@ -214,6 +218,8 @@ h4{font-size:1.25rem;line-height:1.25}
 .route-panel{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(1.5rem,3vw,3rem);align-items:start}
 .map{background:var(--cream-2);border-radius:var(--r-box);overflow:hidden}
 .map svg{width:100%;height:auto;display:block}
+.map .labels{font-size:30px}
+@media (max-width:600px){.map .labels{font-size:36px}.map .days{display:none}}
 .phases{list-style:none;counter-reset:phase;display:grid;gap:.9rem}
 .phases li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding-top:.9rem;border-top:1px solid var(--cream-3)}
 .phases li:first-child{border-top:0;padding-top:0}
@@ -304,8 +310,8 @@ td:last-child,th:last-child{padding-right:0}
 /* Team */
 .team{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;margin-top:2rem;align-items:stretch}
 .person{background:var(--cream);color:var(--ink);border-radius:var(--r-panel);padding:1.5rem;display:flex;flex-direction:column}
-.person img{width:112px;height:112px;border-radius:14px;object-fit:cover}
-.person .logo{width:140px;height:112px;background:var(--forest);-webkit-mask:url(img/mitria-logo.png) left center/contain no-repeat;mask:url(img/mitria-logo.png) left center/contain no-repeat}
+.person img{width:140px;height:140px;border-radius:14px;object-fit:cover}
+.person .logo{width:160px;height:140px;background:var(--forest);-webkit-mask:url(img/mitria-logo.png) left center/contain no-repeat;mask:url(img/mitria-logo.png) left center/contain no-repeat}
 .person h3{margin-top:1.1rem;font-size:1.5rem;color:var(--ink)}
 .person .role{font-size:.9rem;color:var(--ink-2);margin-top:.15rem}
 .person p{font-size:.95rem;line-height:1.5;margin-top:.9rem}
@@ -333,6 +339,7 @@ td:last-child,th:last-child{padding-right:0}
 .ethics img{border-radius:10px;width:100%;aspect-ratio:1;object-fit:cover}
 @media (max-width:760px){.ethics{grid-template-columns:1fr}.ethics img{max-width:260px;aspect-ratio:4/3}}
 .register td:first-child{white-space:normal;min-width:11rem;font-weight:600}
+.sites td:first-child{font-weight:600}
 
 /* Closing */
 .close{padding-block:clamp(2rem,5vw,4rem) clamp(3rem,6.5vw,6rem)}
@@ -354,6 +361,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
 .foot a:hover{text-decoration:underline;text-underline-offset:.18em}
 @media (max-width:760px){.foot{grid-template-columns:1fr;gap:1.25rem}}
 
+.nb{white-space:nowrap}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
@@ -400,7 +408,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
       </dl>
     </aside>
     <div class="hero-copy">
-      <p>An 18-day field course in Thailand for universities and study-abroad providers. Students learn standard wildlife and human-dimensions field methods at eight sites, from cloud forest to a Karen village to the farm edge where elephants and people meet. The curriculum, the sites, and the in-country team are built. Your institution adds the students and the credit.</p>
+      <p>An 18-day field course in Thailand for universities and <span class="nb">study-abroad</span> providers. Students learn standard wildlife and <span class="nb">human-dimensions</span> field methods at eight sites, from cloud forest to a Karen village to the farm edge where elephants and people meet. The curriculum, the sites, and the in-country team are built. Your institution adds the students and the credit.</p>
       <div class="btn-row">
         <a class="btn btn-cream" href="mailto:tylernuckols@gmail.com?subject=Thailand%20Field%20Program%3A%20full%20proposal">Request the full proposal</a>
         <a class="btn btn-line" href="#fee">See the program fee</a>
@@ -424,10 +432,10 @@ footer{padding:0 0 3rem;font-size:.93rem}
       <div class="stats">
         <div class="stat"><b>15,000+</b><span>vascular plant species</span></div>
         <div class="stat"><b>302</b><span>mammal species</span></div>
-        <div class="stat"><b>~1,000</b><span>bird species</span></div>
-        <div class="stat"><b>622,200</b><span>hectares in the Thungyai and Huai Kha Khaeng World Heritage property (1991)</span></div>
+        <div class="stat"><b><span class="approx">~</span>1,000</b><span>bird species</span></div>
+        <div class="stat"><b>622,200</b><span>hectares, Thungyai and Huai Kha Khaeng World Heritage site</span></div>
         <div class="stat"><b>77%</b><span>of the region's large mammals live in those two sanctuaries</span></div>
-        <div class="stat"><b>Tigers</b><span>mainland Southeast Asia's largest remaining population, beside wild elephant herds</span></div>
+        <div class="stat"><b>Tigers</b><span>mainland Southeast Asia's largest remaining population</span></div>
       </div>
     </div>
     <div class="duo-col">
@@ -456,7 +464,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
           </li>
           <li>
             <h4>Tropical forest ecology and biodiversity monitoring</h4>
-            <p>Forest structure, species composition, and biodiversity patterns across an elevation gradient, from montane cloud forest at Doi Inthanon to the evergreen and mixed deciduous forest of the Western Forest Complex and the forest-agriculture interface. Students apply biogeographic frameworks to species distributions at regional scales.</p>
+            <p>Forest structure, species composition, and biodiversity patterns across an elevation gradient, from Doi Inthanon's cloud forest to the evergreen and mixed deciduous forest of the Western Forest Complex and the farm edge, with biogeographic frameworks for species distributions at regional scales.</p>
           </li>
           <li>
             <h4>Conservation field survey methods</h4>
@@ -468,11 +476,11 @@ footer{padding:0 0 3rem;font-size:.93rem}
           </li>
           <li>
             <h4>Conservation institutions and governance</h4>
-            <p>The operational logic, theory of change, and structural constraints of the Department of National Parks, UNESCO World Heritage management, state-captive institutions (the Thai Elephant Conservation Center and the Forest Industry Organization), the community-based sanctuary KSES, the Friends of the Asian Elephant Hospital, and ZSL's Nature-based Solutions program.</p>
+            <p>The operational logic, theory of change, and structural constraints of the Department of National Parks, World Heritage management, the state-run Thai Elephant Conservation Center, the community sanctuary KSES, the Friends of the Asian Elephant Hospital, and ZSL's Nature-based Solutions program.</p>
           </li>
           <li>
             <h4>Conservation and communities</h4>
-            <p>Direct engagement with Karen communities, Thai smallholder farmers, mahouts, park rangers, and ZSL partners. Imposed coexistence, adverse incorporation, and GEDSI used as operational tools rather than compliance boxes, with the Billy Rakchongcharoen case and the conservation-rights tensions in Kaeng Krachan's 2021 UNESCO inscription as the worked example.</p>
+            <p>Direct engagement with Karen communities, Thai smallholder farmers, mahouts, park rangers, and ZSL staff. Imposed coexistence, adverse incorporation, and GEDSI as operational tools rather than compliance boxes, with the Billy Rakchongcharoen case and Kaeng Krachan's 2021 UNESCO inscription as the worked example.</p>
           </li>
           <li>
             <h4>Thailand's cultural and political context for conservation</h4>
@@ -485,10 +493,20 @@ footer{padding:0 0 3rem;font-size:.93rem}
         </ol>
         <p class="note">The course runs from faculty-led instruction at the start to student-led critical evaluation, analysis, and synthesis at the end. Prior field research experience is not required; every skill is taught on site. Students need to arrive adaptable, open-minded, and ready to learn.</p>
       </div>
-      <figure>
-        <img src="img/observer-elephant.webp" width="800" height="1200" alt="A field researcher sits in tall grass recording a wild elephant at the forest edge" loading="lazy" decoding="async">
-        <figcaption>Behavioral sampling at a distance: observation only, at every site.</figcaption>
-      </figure>
+      <div class="learn-photos">
+        <figure>
+          <img src="img/observer-elephant.webp" width="800" height="1200" alt="A field researcher sits in tall grass recording a wild elephant at the forest edge" loading="lazy" decoding="async">
+          <figcaption>Behavioral sampling at a distance.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/camera-trap.webp" width="431" height="495" alt="Two students strap a camera trap to a tree" loading="lazy" decoding="async">
+          <figcaption>Camera-trap deployment.</figcaption>
+        </figure>
+        <figure>
+          <img class="sq" src="img/teaching-forest.webp" width="800" height="800" alt="Tyler briefs a group of students in the forest" loading="lazy" decoding="async">
+          <figcaption>Field briefing before a survey.</figcaption>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -496,7 +514,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
 <section class="sec" style="padding-top:0" id="academics">
   <div class="wrap">
     <div class="panel">
-      <h2>Three semester credits. 135 documented hours.</h2>
+      <h2>Three semester credits. <span class="nb">135 documented hours.</span></h2>
       <p style="margin-top:1rem;max-width:64ch">Proposed as a study-abroad or field course aligned with your existing program track. Your institution sets the course number, level, applicability, grading scale, tuition, and credential treatment; the program supplies the curriculum, the field instruction, and the assessment recommendation.</p>
       <div class="frame-top">
         <div>
@@ -562,20 +580,20 @@ footer{padding:0 0 3rem;font-size:.93rem}
           <g font-size="21" font-weight="700" fill="#CFF06A" text-anchor="middle">
             <text x="304" y="135">1</text><text x="243" y="166">2</text><text x="208" y="187">3</text><text x="357" y="182">4</text><text x="391" y="360">5</text><text x="342" y="546">6</text><text x="330" y="730">7</text><text x="489" y="775">8</text>
           </g>
-          <g font-size="30" font-weight="600" fill="#0F2E25">
+          <g class="labels" font-weight="600" fill="#0F2E25">
             <text x="330" y="110">Chiang Mai</text>
             <text x="222" y="140" text-anchor="end">Doi Inthanon</text>
-            <text x="182" y="212" text-anchor="end">Ban Naklang</text>
+            <text x="232" y="224">Ban Naklang</text>
             <text x="384" y="166">Lampang</text>
             <text x="363" y="346" text-anchor="end">Sukhothai</text>
             <text x="314" y="532" text-anchor="end">Huai Kha Khaeng</text>
             <text x="302" y="716" text-anchor="end">Kanchanaburi</text>
             <text x="516" y="761">Bangkok</text>
           </g>
-          <g font-size="21" fill="#3F5B51" font-weight="500">
+          <g class="days" font-size="21" fill="#3F5B51" font-weight="500">
             <text x="330" y="136">Days 1 to 2</text>
             <text x="222" y="159" text-anchor="end">Day 3</text>
-            <text x="182" y="238" text-anchor="end">Days 4 to 7</text>
+            <text x="232" y="250">Days 4 to 7</text>
             <text x="384" y="192">Day 8</text>
             <text x="363" y="372" text-anchor="end">Day 9</text>
             <text x="314" y="558" text-anchor="end">Days 10 to 12</text>
@@ -678,12 +696,8 @@ footer{padding:0 0 3rem;font-size:.93rem}
       <h2>Ground operations, run by people who live here.</h2>
       <div class="logi">
         <div>
-          <h4>Air travel</h4>
-          <p>Students book their own international flights to Bangkok (Suvarnabhumi, BKK) and their own domestic connection to Chiang Mai (CNX). The program begins in Chiang Mai, and all transport from that point is overland. Airfare is excluded from the program fee.</p>
-        </div>
-        <div>
           <h4>Ground transport</h4>
-          <p>Two private vans with professional drivers carry the group over the entire route. Each is refitted to 11 reclining seats with the rear rows adjustable for luggage, so the two seat 22 and carry the full traveling group of 18 with room for bags. Vehicles run on the factory diesel system; none are converted to LPG.</p>
+          <p>Two private vans with professional drivers carry the group over the entire route. Each is refitted to 11 reclining seats with the rear rows adjustable for luggage, so the two seat 22 and carry the full traveling group of 18 with room for bags. Both run on factory diesel, not LPG conversions.</p>
           <p>Registered passenger vans are governed to 90 km/h under Thai law, which is built into travel-day timing. Chiang Mai to Ban Naklang and Huai Kha Khaeng to Kanchanaburi each run about four hours.</p>
         </div>
         <div>
@@ -692,13 +706,17 @@ footer{padding:0 0 3rem;font-size:.93rem}
           <p>Camping is an option; whether it is included is the partner's call. Students bring their own equipment, and the program can arrange rentals at additional cost.</p>
         </div>
         <div>
-          <h4>Park and site fees</h4>
-          <p>Included in the program fee: Doi Inthanon (300 THB per foreign adult), Doi Suthep-Pui (100 THB), the Thai Elephant Conservation Center (200 THB), and ranger fees.</p>
-        </div>
-        <div>
           <h4>Entry requirements</h4>
           <p>United States citizens receive a 30-day visa exemption on arrival, issued at the border with no advance application, which covers the 18-day program with margin. Students adding personal travel can extend the exemption once, for a further 30 days, at a Thai immigration office.</p>
           <p>Every student files the Thailand Digital Arrival Card within 72 hours before arrival at tdac.immigration.go.th; it is free and has been mandatory since 1 May 2025. Passports must be valid for at least six months beyond the date of entry.</p>
+        </div>
+        <div>
+          <h4>Air travel</h4>
+          <p>Students book their own international flights to Bangkok (Suvarnabhumi, BKK) and their own domestic connection to Chiang Mai (CNX). The program begins in Chiang Mai, and all transport from that point is overland. Airfare is excluded from the program fee.</p>
+        </div>
+        <div>
+          <h4>Park and site fees</h4>
+          <p>Included in the program fee: Doi Inthanon (300 THB per foreign adult), Doi Suthep-Pui (100 THB), the Thai Elephant Conservation Center (200 THB), and ranger fees.</p>
         </div>
         <div>
           <h4>Field support</h4>
@@ -732,7 +750,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
         <div class="bar" role="img" aria-label="Fee breakdown per student at a cohort of 10: about $1,400 field team and instruction, about $1,400 transport, lodging, and meals, about $350 site access, tools, and safety, about $450 admin and contingency" style="background:rgba(15,46,37,.12)">
           <span class="c4" style="width:38.9%"></span><span class="c3" style="width:38.9%"></span><span class="c2" style="width:9.7%"></span><span style="width:12.5%;background:#F3F1E3"></span>
         </div>
-        <ul class="legend">
+        <ul class="legend money">
           <li><i class="c4"></i><b>~$1,400</b> Field team and instruction: the lead instructor and the Thai coordinator, translator, and guide</li>
           <li><i class="c3"></i><b>~$1,400</b> Transport, lodging, meals: private vans and drivers, all lodging, full board</li>
           <li><i class="c2"></i><b>~$350</b> Site access, tools, safety: park and partner fees, teaching tools, medical retainer, communications</li>
@@ -799,7 +817,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
     </div>
     <div class="panel">
       <div class="tbl-wrap">
-        <table class="stack">
+        <table class="stack sites">
           <thead><tr><th>Site</th><th>Partner or authority</th><th>Academic role</th></tr></thead>
           <tbody>
             <tr><td>Chiang Mai and Doi Suthep-Pui</td><td>Doi Suthep Nature Center; Department of National Parks (DNP)</td><td>Arrival base; methods calibration; watershed forest, elevation, urban interface, cultural-landscape context.</td></tr>
@@ -833,7 +851,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
       </div>
       <div class="person">
         <img src="img/mook.webp" width="480" height="480" alt="Kamolpawn Timtang" loading="lazy" decoding="async">
-        <h3>Kamolpawn "Mook" Timtang</h3>
+        <h3>Kamolpawn “Mook” Timtang</h3>
         <p class="role">In-country operations</p>
         <p>A licensed Thai tour guide and professional translator, Mook runs the program's in-country operations: permits, site logistics, and community and partner liaison across the route. At Bring the Elephant Home, an elephant-conservation foundation, she was the education and outreach officer, building community education programs on human-elephant coexistence. She previously ran visa and work-permit administration at a trilingual school in Bangkok.</p>
         <div class="links"><a href="https://www.linkedin.com/in/kamolpawn-timtang-409a90212/">LinkedIn</a></div>
@@ -919,7 +937,7 @@ footer{padding:0 0 3rem;font-size:.93rem}
           <h3>Observation first, with no exceptions.</h3>
           <p>No elephant riding, bathing, or direct-contact entertainment; no performing animals; no captive big-cat handling or selfies. Kindred Spirit's hands-off policy (no touching, feeding, riding, performance, or visitor interference) sets the welfare boundary. The Thai Elephant Conservation Center is a structured comparison with a state institution through approved husbandry and education activities only. In protected areas, work is noninvasive and non-collecting. Any venue that cannot meet this standard is removed rather than described more carefully.</p>
         </div>
-        <img src="img/camera-trap.webp" width="431" height="495" alt="Two students strap a camera trap to a tree" loading="lazy" decoding="async">
+        <img src="img/kindred-spirit.webp" width="780" height="520" alt="A young elephant beside an adult in the forest at Kindred Spirit Elephant Sanctuary" loading="lazy" decoding="async" style="object-position:22% 50%">
       </div>
 
       <details class="more">
